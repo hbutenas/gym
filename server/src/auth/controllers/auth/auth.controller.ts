@@ -1,5 +1,5 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
-import { RegisterDto } from 'src/auth/dto';
+import { LoginDto, RegisterDto } from 'src/auth/dto';
 import { AuthService } from 'src/auth/services/auth/auth.service';
 
 @Controller('/v1/auth')
@@ -14,7 +14,7 @@ export class AuthController {
 
   @Post('login')
   @HttpCode(HttpStatus.OK)
-  public async login() {
-    // TODO Login
+  public async login(@Body() body: LoginDto) {
+    return this.authService.login(body);
   }
 }
